@@ -9,6 +9,9 @@ end
 
 function love.update(dt)
   applyAcceleration(mainDot)
+  for i = 1,table.getn(currentBlocks) do
+    checkCollisions(mainDot,currentBlocks[i])
+  end
 end
 
 function love.draw(dt)
