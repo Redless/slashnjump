@@ -11,15 +11,20 @@ function drawDot(dotToDraw, blockToCheck)
 end
 
 function applyVelocity(dotToUse)
-  if (dotToUse.xV > 0) then
-    dotToUse.x = dotToUse.x + math.min(maxSpeed, dotToUse.xV)
+  if (dotToUse.onLeftWall or dotToUse.onRightWall) then
+    curMaxSpeed = maxSpeed/2
   else
-    dotToUse.x = dotToUse.x + math.max(-maxSpeed, dotToUse.xV)
+    curMaxSpeed = maxSpeed
+  end
+  if (dotToUse.xV > 0) then
+    dotToUse.x = dotToUse.x + math.min(curMaxSpeed, dotToUse.xV)
+  else
+    dotToUse.x = dotToUse.x + math.max(-curMaxSpeed, dotToUse.xV)
   end
   if (dotToUse.yV > 0) then
-    dotToUse.y = dotToUse.y + math.min(maxSpeed, dotToUse.yV)
+    dotToUse.y = dotToUse.y + math.min(curMaxSpeed, dotToUse.yV)
   else
-    dotToUse.y = dotToUse.y + math.max(-maxSpeed, dotToUse.yV)
+    dotToUse.y = dotToUse.y + math.max(-curMaxSpeed, dotToUse.yV)
   end
 
 end
@@ -39,20 +44,20 @@ function checkCollisions (dotToCheck, blockToCheck)
   and (blockToCheck.y < (dotToCheck.y + dotToCheck.height))
   and ((blockToCheck.x + blockToCheck.width) > dotToCheck.x)
   and (blockToCheck.x < (dotToCheck.x + dotToCheck.width)) then
-    if (getHearty(dotToCheck)) >= ((blockToCheck.height/blockToCheck.width)*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then--heart is in the upper v
+    if (dotToCheck.yV < 0) and (getHearty(dotToCheck)) >= ((blockToCheck.height/blockToCheck.width)*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then--heart is in the upper v
       --move up in positive y
       dotToCheck.yV = 0
       dotToCheck.y = blockToCheck.y + blockToCheck.height
-    elseif (getHearty(dotToCheck)) <= ((-blockToCheck.height/blockToCheck.width)*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then
+    elseif (dotToCheck.yV > 0) and (getHearty(dotToCheck)) <= ((-blockToCheck.height/blockToCheck.width)*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then
       --move in negative y
       dotToCheck.yV = 0
       dotToCheck.onFloor = true
       dotToCheck.y = blockToCheck.y - dotToCheck.height
-    elseif (getHeartx(dotToCheck)) >= ((blockToCheck.width/blockToCheck.height)*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
+    elseif (dotToCheck.xV < 0) and (getHeartx(dotToCheck)) >= ((blockToCheck.width/blockToCheck.height)*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
       --move in positive x
       dotToCheck.xV = 0
       dotToCheck.x = blockToCheck.x + blockToCheck.width
-    elseif (getHeartx(dotToCheck)) <= ((-blockToCheck.width/blockToCheck.height)*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
+    elseif (dotToCheck.xV > 0) and (getHeartx(dotToCheck)) <= ((-blockToCheck.width/blockToCheck.height)*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
       --move in negative x
       dotToCheck.xV = 0
       dotToCheck.x = blockToCheck.x - dotToCheck.width

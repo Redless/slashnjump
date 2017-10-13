@@ -6,6 +6,7 @@ function love.load()
   mainDot = dot(0,0,1,1)
   currentBlocks = {}
   table.insert(currentBlocks,block(0,10,100,10))
+  table.insert(currentBlocks,block(10,8,5,10))
   sfx = love.audio.newSource("assets/Jump.wav")
 end
 
