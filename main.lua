@@ -7,22 +7,24 @@ function love.load()
   mainDot = dot(0,0,1,1)
   currentBlocks = {}
   table.insert(currentBlocks,block(0,10,100,10))
-  table.insert(currentBlocks,block(10,8,5,500))
+  table.insert(currentBlocks,block(10,5,5,500))
   sfx = love.audio.newSource("assets/Jump.wav")
 end
 
 function love.update(dt)
   mainDot.onLeftWall = false
   mainDot.onRightWall = false
-  applyGravity(mainDot)
+  for i = 1,table.getn(currentBlocks) do
+    checkWalls(mainDot,currentBlocks[i])
+  end
   applyVelocity(mainDot)
+  applyGravity(mainDot)
   for i = 1,table.getn(currentBlocks) do
     checkCollisions(mainDot,currentBlocks[i])
   end
 end
 
 function love.draw(dt)
-
   love.graphics.setBackgroundColor(200, 200, 255)
   love.graphics.scale(50, 50)
   drawDot(mainDot,currentBlocks[1])

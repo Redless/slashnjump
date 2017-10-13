@@ -17,14 +17,14 @@ function applyVelocity(dotToUse)
     curMaxSpeed = maxSpeed
   end
   if (dotToUse.xV > 0) then
-    dotToUse.x = dotToUse.x + math.min(curMaxSpeed, dotToUse.xV)
+    dotToUse.x = dotToUse.x + math.min(maxSpeed, dotToUse.xV)
   else
-    dotToUse.x = dotToUse.x + math.max(-curMaxSpeed, dotToUse.xV)
+    dotToUse.x = dotToUse.x + math.max(-maxSpeed, dotToUse.xV)
   end
   if (dotToUse.yV > 0) then
     dotToUse.y = dotToUse.y + math.min(curMaxSpeed, dotToUse.yV)
   else
-    dotToUse.y = dotToUse.y + math.max(-curMaxSpeed, dotToUse.yV)
+    dotToUse.y = dotToUse.y + math.max(-maxSpeed, dotToUse.yV)
   end
 
 end
@@ -37,6 +37,9 @@ function applyGravity(dotToUse)
     dotToUse.heightJumped = dotToUse.heightJumped + .1
   end
 
+end
+
+function applyFriction()
 end
 
 function checkCollisions (dotToCheck, blockToCheck)
@@ -65,10 +68,14 @@ function checkCollisions (dotToCheck, blockToCheck)
       dotToCheck.x = blockToCheck.x - dotToCheck.width
     end
   end
-  if (dotToCheck.x + dotToCheck.width == blockToCheck.x) then
+end
+
+function checkWalls(dotToCheck, blockToCheck)
+  --here we're checking for wall jump opportunities
+  if (dotToCheck.x + dotToCheck.width == blockToCheck.x) and (getHearty(dotToCheck) >= blockToCheck.y) and (getHearty(dotToCheck) <= blockToCheck.y + blockToCheck.height) then
     dotToCheck.onRightWall = true
   end
-  if (dotToCheck.x == blockToCheck.width + blockToCheck.x) then
+  if (dotToCheck.x == blockToCheck.width + blockToCheck.x) and (getHearty(dotToCheck) >= blockToCheck.y) and (getHearty(dotToCheck) <= blockToCheck.y + blockToCheck.height) then
     dotToCheck.onLeftWall = true
   end
 end
