@@ -8,9 +8,9 @@ function drawBlock(drawableBlock)
 end
 
 function getHeartx(heartHaver)
-  return (heartHaver.x+heartHaver.width)
+  return (heartHaver.x+heartHaver.width/2)
 end
 
 function getHearty(heartHaver)
-  return (heartHaver.y+heartHaver.height)
+  return (heartHaver.y+heartHaver.height/2)
 end

@@ -4,7 +4,7 @@ function dot(x, y, width, height)
   direction = 1} -- 1 is forward, 0 is backwards
 end
 
-function drawDot(dotToDraw)
+function drawDot(dotToDraw, blockToCheck)
   love.graphics.setColor(170, 20, 100)
   love.graphics.rectangle("fill", dotToDraw.x, dotToDraw.y, dotToDraw.width, dotToDraw.height)
 end
@@ -19,19 +19,19 @@ function checkCollisions (dotToCheck, blockToCheck)
   and (blockToCheck.y < (dotToCheck.y + dotToCheck.height))
   and ((blockToCheck.x + blockToCheck.width) > dotToCheck.x)
   and (blockToCheck.x < (dotToCheck.x + dotToCheck.width)) then
-    if (getHearty(dotToCheck)) >= (blockToCheck.height/blockToCheck.width*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then--heart is in the upper v
+    if (getHearty(dotToCheck)) >= ((blockToCheck.height/blockToCheck.width)*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then--heart is in the upper v
       --move up in positive y
       dotToCheck.yV = 0
       dotToCheck.y = blockToCheck.y + blockToCheck.height
-    elseif (getHearty(dotToCheck)) <= (-blockToCheck.height/blockToCheck.width*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then
+    elseif (getHearty(dotToCheck)) <= ((-blockToCheck.height/blockToCheck.width)*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then
       --move in negative y
       dotToCheck.yV = 0
       dotToCheck.y = blockToCheck.y - dotToCheck.height
-    elseif (getHeartx(dotToCheck)) >= (blockToCheck.width/blockToCheck.height*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
+    elseif (getHeartx(dotToCheck)) >= ((blockToCheck.width/blockToCheck.height)*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
       --move in positive x
       dotToCheck.xV = 0
       dotToCheck.x = blockToCheck.x + blockToCheck.width
-    else
+    elseif (getHeartx(dotToCheck)) <= ((-blockToCheck.width/blockToCheck.height)*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
       --move in negative x
       dotToCheck.xV = 0
       dotToCheck.x = blockToCheck.x - dotToCheck.width

@@ -4,7 +4,7 @@ require("dot")
 function love.load()
   mainDot = dot(0,0,1,1)
   currentBlocks = {}
-  table.insert(currentBlocks,block(10,10,5,5))
+  table.insert(currentBlocks,block(10,5,10,10))
 end
 
 function love.update(dt)
@@ -17,7 +17,7 @@ end
 function love.draw(dt)
   love.graphics.setBackgroundColor(200, 200, 255)
   love.graphics.scale(50, 50)
-  drawDot(mainDot)
+  drawDot(mainDot,currentBlocks[1])
   for i = 1,table.getn(currentBlocks) do
     drawBlock(currentBlocks[i])
   end
