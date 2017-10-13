@@ -44,26 +44,32 @@ function checkCollisions (dotToCheck, blockToCheck)
   and (blockToCheck.y < (dotToCheck.y + dotToCheck.height))
   and ((blockToCheck.x + blockToCheck.width) > dotToCheck.x)
   and (blockToCheck.x < (dotToCheck.x + dotToCheck.width)) then
-    if (dotToCheck.yV <= 0) and (getHearty(dotToCheck)) >= ((blockToCheck.height/blockToCheck.width)*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then--heart is in the upper v
+    if (dotToCheck.yV <= 0) and (getHearty(dotToCheck)) >= (math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+blockToCheck.y-blockToCheck.width/2) and (getHearty(dotToCheck) >= getHearty(blockToCheck)) then--heart is in the upper v
       --move up in positive y
       dotToCheck.yV = 0
       dotToCheck.y = blockToCheck.y + blockToCheck.height
-    elseif (dotToCheck.yV >= 0) and (getHearty(dotToCheck)) <= ((-blockToCheck.height/blockToCheck.width)*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then
+    elseif (dotToCheck.yV >= 0) and (getHearty(dotToCheck)) <= (-math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+blockToCheck.y+blockToCheck.width/2) and (getHearty(dotToCheck) <= getHearty(blockToCheck)) then
       --move in negative y
       dotToCheck.yV = 0
       dotToCheck.onFloor = true
       dotToCheck.y = blockToCheck.y - dotToCheck.height
-    elseif (dotToCheck.xV <= 0) and (getHeartx(dotToCheck)) >= ((blockToCheck.width/blockToCheck.height)*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
+    elseif (dotToCheck.xV <= 0) and (getHeartx(dotToCheck)) >= (math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+blockToCheck.x-blockToCheck.height/2) and (getHeartx(dotToCheck) >= getHeartx(blockToCheck)) then
       --move in positive x
-      dotToCheck.onLeftWall = true
+
       dotToCheck.xV = 0
       dotToCheck.x = blockToCheck.x + blockToCheck.width
-    elseif (dotToCheck.xV >= 0) and (getHeartx(dotToCheck)) <= ((-blockToCheck.width/blockToCheck.height)*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
+    elseif (dotToCheck.xV >= 0) and (getHeartx(dotToCheck)) <= (-math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+blockToCheck.x+blockToCheck.height/2) and (getHeartx(dotToCheck) <= getHeartx(blockToCheck)) then
       --move in negative x
-      dotToCheck.onRightWall = true
+
       dotToCheck.xV = 0
       dotToCheck.x = blockToCheck.x - dotToCheck.width
     end
+  end
+  if (dotToCheck.x + dotToCheck.width == blockToCheck.x) then
+    dotToCheck.onRightWall = true
+  end
+  if (dotToCheck.x == blockToCheck.width + blockToCheck.x) then
+    dotToCheck.onLeftWall = true
   end
 end
 
