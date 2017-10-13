@@ -2,6 +2,7 @@ require("block")
 require("dot")
 
 function love.load()
+  maxJump = 3
   maxSpeed = .2
   mainDot = dot(0,0,1,1)
   currentBlocks = {}
@@ -37,8 +38,12 @@ function love.keypressed(key)
     mainDot.yV = mainDot.yV + .1
   elseif key == "d" then
     mainDot.xV = mainDot.xV + .1
-  elseif (key == "b") and mainDot.onFloor then
+  elseif (key == "space") and mainDot.onFloor then
     --love.audio.play(sfx)
     jump(mainDot)
+  elseif (key == "space") and mainDot.onLeftWall then
+    leftWallKick(mainDot)
+  elseif (key == "space") and mainDot.onRightWall then
+    rightWallKick(mainDot)
   end
 end
