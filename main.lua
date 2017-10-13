@@ -8,10 +8,11 @@ function love.load()
 end
 
 function love.update(dt)
-  -- body...
+  applyAcceleration(mainDot)
 end
 
 function love.draw(dt)
+  love.graphics.setBackgroundColor(200, 200, 255)
   love.graphics.scale(50, 50)
   drawDot(mainDot)
   for i = 1,table.getn(currentBlocks) do
@@ -20,5 +21,13 @@ function love.draw(dt)
 end
 
 function love.keypressed(key)
-
+  if key == "w" then
+    mainDot.yV = mainDot.yV - .1
+  elseif key == "a" then
+    mainDot.xV = mainDot.xV - .1
+  elseif key == "s" then
+    mainDot.yV = mainDot.yV + .1
+  elseif key == "d" then
+    mainDot.xV = mainDot.xV + .1
+  end
 end
