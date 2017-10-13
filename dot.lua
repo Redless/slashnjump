@@ -22,19 +22,19 @@ function checkCollisions (dotToCheck, blockToCheck)
     if (getHearty(dotToCheck)) >= (blockToCheck.height/blockToCheck.width*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then--heart is in the upper v
       --move up in positive y
       dotToCheck.yV = 0
-      dotToCheck.y = blockToCheck.y + dotToCheck.height
+      dotToCheck.y = blockToCheck.y + blockToCheck.height
     elseif (getHearty(dotToCheck)) <= (-blockToCheck.height/blockToCheck.width*math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+getHearty(blockToCheck)) then
       --move in negative y
       dotToCheck.yV = 0
-      dotToCheck.y = blockToCheck.y - blockToCheck.height
+      dotToCheck.y = blockToCheck.y - dotToCheck.height
     elseif (getHeartx(dotToCheck)) >= (blockToCheck.width/blockToCheck.height*math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+getHeartx(blockToCheck)) then
       --move in positive x
       dotToCheck.xV = 0
-      dotToCheck.x = blockToCheck.x + dotToCheck.width
+      dotToCheck.x = blockToCheck.x + blockToCheck.width
     else
       --move in negative x
       dotToCheck.xV = 0
-      dotToCheck.x = blockToCheck.x - blockToCheck.width
+      dotToCheck.x = blockToCheck.x - dotToCheck.width
     end
   end
 end

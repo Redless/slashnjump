@@ -4,7 +4,7 @@ require("dot")
 function love.load()
   mainDot = dot(0,0,1,1)
   currentBlocks = {}
-  table.insert(currentBlocks,block(10,10,1,1))
+  table.insert(currentBlocks,block(10,10,5,5))
 end
 
 function love.update(dt)
