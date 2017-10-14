@@ -4,7 +4,10 @@ require("menu")
 require("gameloop")
 
 function love.load()
-  mode = "game"
+  mode = "menu"
+  currentMenuIn = 1
+  loadMenus()
+  menuIn = 1
   maxJump = 3
   maxSpeed = .2
   mainDot = dot(0,0,1,1)
@@ -23,6 +26,8 @@ end
 function love.draw(dt)
   if mode == "game" then
     drawInGame()
+  elseif mode == "menu" then
+    drawInMenus()
   end
 end
 
