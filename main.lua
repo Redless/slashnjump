@@ -14,14 +14,21 @@ end
 function love.update(dt)
   mainDot.onLeftWall = false
   mainDot.onRightWall = false
+  mainDot.onFloor = false
   for i = 1,table.getn(currentBlocks) do
     checkWalls(mainDot,currentBlocks[i])
   end
   applyVelocity(mainDot)
   applyGravity(mainDot)
+  applyFriction(mainDot)
   for i = 1,table.getn(currentBlocks) do
     checkCollisions(mainDot,currentBlocks[i])
   end
+  if (not mainDot.alreadyOnFloor) and (mainDot.onFloor) then
+    mainDot.xV = .6 * mainDot.direction
+    love.audio.play(sfx)
+  end
+  mainDot.alreadyOnFloor = mainDot.onFloor
 end
 
 function love.draw(dt)
@@ -42,7 +49,7 @@ function love.keypressed(key)
     mainDot.yV = mainDot.yV + .1
   elseif key == "d" then
     mainDot.xV = mainDot.xV + .1
-  elseif (key == "space") and mainDot.onFloor then
+  elseif (key == "space") and mainDot.alreadyOnFloor then
     --love.audio.play(sfx)
     jump(mainDot)
   elseif (key == "space") and mainDot.onLeftWall then

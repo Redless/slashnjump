@@ -1,7 +1,7 @@
 function dot(x, y, width, height)
   return {x = x, y = y, width = width, height = height, xV = 0, yV = 0,
-  onFloor = false, onLeftWall = false, onRightWall = false, jumping = false,
-  heightJumped = 0,
+  onFloor = true, onLeftWall = false, onRightWall = false, jumping = false,
+  heightJumped = 0, alreadyOnFloor = true,
   direction = 1} -- 1 is forward, 0 is backwards
 end
 
@@ -31,15 +31,25 @@ end
 
 function applyGravity(dotToUse)
   dotToUse.jumping = (dotToUse.heightJumped < maxJump) and (dotToUse.jumping) and love.keyboard.isDown("space")
-  if not (dotToUse.jumping) then
+  if not (dotToUse.jumping or dotToUse.onFloor) then
     dotToUse.yV = dotToUse.yV + .02
-  else
+  elseif dotToUse.jumping then
     dotToUse.heightJumped = dotToUse.heightJumped + .1
   end
 
 end
 
-function applyFriction()
+function applyFriction(dotToUse)
+  if dotToUse.alreadyOnFloor then
+    if dotToUse.xV > 0 then
+      dotToUse.xV = dotToUse.xV - .01
+    elseif dotToUse.xV < 0 then
+      dotToUse.xV = dotToUse.xV + .01
+    end
+    if math.abs(dotToUse.xV) < .1 then
+      dotToUse.xV = 0
+    end
+  end
 end
 
 function checkCollisions (dotToCheck, blockToCheck)
@@ -51,17 +61,20 @@ function checkCollisions (dotToCheck, blockToCheck)
       --move up in positive y
       dotToCheck.yV = 0
       dotToCheck.y = blockToCheck.y + blockToCheck.height
-    elseif (dotToCheck.yV >= 0) and (getHearty(dotToCheck)) <= (-math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+blockToCheck.y+blockToCheck.width/2) and (getHearty(dotToCheck) <= getHearty(blockToCheck)) then
+    end
+    if ((dotToCheck.yV >= 0) and (getHearty(dotToCheck)) <= (-math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+blockToCheck.y+blockToCheck.width/2) and (getHearty(dotToCheck) <= getHearty(blockToCheck))) then
       --move in negative y
       dotToCheck.yV = 0
-      dotToCheck.onFloor = true
+
       dotToCheck.y = blockToCheck.y - dotToCheck.height
-    elseif (dotToCheck.xV <= 0) and (getHeartx(dotToCheck)) >= (math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+blockToCheck.x-blockToCheck.height/2) and (getHeartx(dotToCheck) >= getHeartx(blockToCheck)) then
+    end
+    if (dotToCheck.xV <= 0) and (getHeartx(dotToCheck)) >= (math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+blockToCheck.x-blockToCheck.height/2) and (getHeartx(dotToCheck) >= getHeartx(blockToCheck)) then
       --move in positive x
 
       dotToCheck.xV = 0
       dotToCheck.x = blockToCheck.x + blockToCheck.width
-    elseif (dotToCheck.xV >= 0) and (getHeartx(dotToCheck)) <= (-math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+blockToCheck.x+blockToCheck.height/2) and (getHeartx(dotToCheck) <= getHeartx(blockToCheck)) then
+    end
+    if (dotToCheck.xV >= 0) and (getHeartx(dotToCheck)) <= (-math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+blockToCheck.x+blockToCheck.height/2) and (getHeartx(dotToCheck) <= getHeartx(blockToCheck)) then
       --move in negative x
 
       dotToCheck.xV = 0
@@ -78,11 +91,14 @@ function checkWalls(dotToCheck, blockToCheck)
   if (dotToCheck.x == blockToCheck.width + blockToCheck.x) and (getHearty(dotToCheck) >= blockToCheck.y) and (getHearty(dotToCheck) <= blockToCheck.y + blockToCheck.height) then
     dotToCheck.onLeftWall = true
   end
+  if (dotToCheck.y + dotToCheck.height == blockToCheck.y) and (dotToCheck.x + dotToCheck.width > blockToCheck.x) and (dotToCheck.x < blockToCheck.x + blockToCheck.width) then
+    dotToCheck.onFloor = true
+  end
 end
 
 function jump(dotToJump)
   dotToJump.heightJumped = 0
-  dotToJump.onFloor = false
+  --dotToJump.onFloor = false
   dotToJump.jumping = true
   dotToJump.yV = -.2
 end
