@@ -11,9 +11,11 @@ end
 
 function drawMenuButton(number,buttonToDraw)
   love.graphics.setColor(100, 100, 110)
-  love.graphics.rectangle("fill", love.graphics.getWidth()/3, (number+2)*love.graphics.getHeight()/7, love.graphics.getWidth()/3, love.graphics.getHeight()/7-5,40,40)
+  love.graphics.rectangle("fill", love.graphics.getWidth()*2/9, (number+2)*love.graphics.getHeight()/7, love.graphics.getWidth()*5/9, love.graphics.getHeight()/7-5,(love.graphics.getHeight()/7-5)/2,(love.graphics.getHeight()/7-5)/2)
   love.graphics.setColor(10, 10, 30)
-  love.graphics.printf(buttonToDraw.text, love.graphics.getWidth()/3, (number+2)*love.graphics.getHeight()/7,love.graphics.getWidth()/3,"center")
+
+  love.graphics.setFont(normalFont)
+  love.graphics.printf(buttonToDraw.text, love.graphics.getWidth()*2/9, (number+2)*love.graphics.getHeight()/7,love.graphics.getWidth()*5/9,"center")
 end
 
 function loadMenus()

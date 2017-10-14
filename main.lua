@@ -4,6 +4,7 @@ require("menu")
 require("gameloop")
 
 function love.load()
+  normalFont = love.graphics.newFont(99)
   mode = "menu"
   currentMenuIn = 1
   loadMenus()
