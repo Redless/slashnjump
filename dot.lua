@@ -1,13 +1,17 @@
 function dot(x, y, width, height)
   return {x = x, y = y, width = width, height = height, xV = 0, yV = 0,
   onFloor = true, onLeftWall = false, onRightWall = false, jumping = false,
-  heightJumped = 0, alreadyOnFloor = true,
+  heightJumped = 0, alreadyOnFloor = true, slashUsed = false,
   direction = 1} -- 1 is forward, 0 is backwards
 end
 
 function drawDot(dotToDraw, blockToCheck)
   love.graphics.setColor(170, 20, 100)
   love.graphics.rectangle("fill", dotToDraw.x, dotToDraw.y, dotToDraw.width, dotToDraw.height,.4,.4)
+  love.graphics.polygon("fill", getHeartx(dotToDraw)+dotToDraw.direction*3/4*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
+  getHeartx(dotToDraw)+dotToDraw.direction*7/8*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
+  getHeartx(dotToDraw)+dotToDraw.direction*dotToDraw.width*5/8, getHearty(dotToDraw)+3/8*dotToDraw.height,
+  getHeartx(dotToDraw)+dotToDraw.direction*dotToDraw.width*4/8, getHearty(dotToDraw)+3/8*dotToDraw.height)
 end
 
 function applyVelocity(dotToUse)
@@ -87,12 +91,17 @@ function checkWalls(dotToCheck, blockToCheck)
   --here we're checking for wall jump opportunities
   if (dotToCheck.x + dotToCheck.width == blockToCheck.x) and (getHearty(dotToCheck) >= blockToCheck.y) and (getHearty(dotToCheck) <= blockToCheck.y + blockToCheck.height) then
     dotToCheck.onRightWall = true
+    dotToCheck.direction = -1
+    dotToCheck.slashUsed = false
   end
   if (dotToCheck.x == blockToCheck.width + blockToCheck.x) and (getHearty(dotToCheck) >= blockToCheck.y) and (getHearty(dotToCheck) <= blockToCheck.y + blockToCheck.height) then
     dotToCheck.onLeftWall = true
+    dotToCheck.direction = 1
+    dotToCheck.slashUsed = false
   end
   if (dotToCheck.y + dotToCheck.height == blockToCheck.y) and (dotToCheck.x + dotToCheck.width > blockToCheck.x) and (dotToCheck.x < blockToCheck.x + blockToCheck.width) then
     dotToCheck.onFloor = true
+    dotToCheck.slashUsed = false
   end
 end
 
@@ -109,6 +118,7 @@ function leftWallKick(dotToJump)
   dotToJump.jumping = true
   dotToJump.yV = -.2
   dotToJump.xV = .2
+  dotToJump.direction = 1
 end
 
 function rightWallKick(dotToJump)
@@ -117,4 +127,12 @@ function rightWallKick(dotToJump)
   dotToJump.jumping = true
   dotToJump.yV = -.2
   dotToJump.xV = -.2
+  dotToJump.direction = -1
+end
+
+function slash(dotToSlash)
+  if not dotToSlash.slashUsed then
+    dotToSlash.slashUsed = true
+    dotToSlash.direction = -dotToSlash.direction
+  end
 end

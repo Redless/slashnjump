@@ -26,14 +26,14 @@ function love.update(dt)
   end
   if (not mainDot.alreadyOnFloor) and (mainDot.onFloor) then
     mainDot.xV = .6 * mainDot.direction
-    love.audio.play(sfx)
+    --love.audio.play(sfx)
   end
   mainDot.alreadyOnFloor = mainDot.onFloor
 end
 
 function love.draw(dt)
   love.graphics.setBackgroundColor(200, 200, 255)
-  love.graphics.scale(50, 50)
+  love.graphics.scale(30, 30)
   drawDot(mainDot,currentBlocks[1])
   for i = 1,table.getn(currentBlocks) do
     drawBlock(currentBlocks[i])
@@ -49,12 +49,14 @@ function love.keypressed(key)
     mainDot.yV = mainDot.yV + .1
   elseif key == "d" then
     mainDot.xV = mainDot.xV + .1
-  elseif (key == "space") and mainDot.alreadyOnFloor then
+  elseif (key == "space") and mainDot.onFloor then
     --love.audio.play(sfx)
     jump(mainDot)
   elseif (key == "space") and mainDot.onLeftWall then
     leftWallKick(mainDot)
   elseif (key == "space") and mainDot.onRightWall then
     rightWallKick(mainDot)
+  elseif (key == "space") then
+    slash(mainDot)
   end
 end
