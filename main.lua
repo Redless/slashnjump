@@ -5,7 +5,7 @@ require("gameloop")
 
 function love.load()
   normalFont = love.graphics.newFont(99)
-  mode = "menu"
+  mode = "game"
   currentMenuIn = 1
   loadMenus()
   menuIn = 1
@@ -15,7 +15,11 @@ function love.load()
   currentBlocks = {}
   table.insert(currentBlocks,block(0,10,100,10))
   table.insert(currentBlocks,block(10,5,5,500))
-  sfx = love.audio.newSource("assets/Jump.wav")
+  sfxjump = love.audio.newSource("assets/jump.wav")
+  sfxdead = love.audio.newSource("assets/dead.wav")
+  sfxtouchdown = love.audio.newSource("assets/touchdown.wav")
+  sfxkick = love.audio.newSource("assets/kick.wav")
+  sfxslash = love.audio.newSource("assets/slash.wav")
 end
 
 function love.update(dt)

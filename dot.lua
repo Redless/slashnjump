@@ -107,12 +107,14 @@ end
 
 function jump(dotToJump)
   dotToJump.heightJumped = 0
+  love.audio.play(sfxjump)
   --dotToJump.onFloor = false
   dotToJump.jumping = true
   dotToJump.yV = -.2
 end
 
 function leftWallKick(dotToJump)
+  love.audio.play(sfxkick)
   dotToJump.heightJumped = 0
   dotToJump.onLeftWall = false
   dotToJump.jumping = true
@@ -122,6 +124,7 @@ function leftWallKick(dotToJump)
 end
 
 function rightWallKick(dotToJump)
+  love.audio.play(sfxkick)
   dotToJump.heightJumped = 0
   dotToJump.onRightWall = false
   dotToJump.jumping = true
@@ -132,6 +135,7 @@ end
 
 function slash(dotToSlash)
   if not dotToSlash.slashUsed then
+    love.audio.play(sfxslash)
     dotToSlash.slashUsed = true
     dotToSlash.direction = -dotToSlash.direction
   end

@@ -13,7 +13,7 @@ function updateInGame(dt)
   end
   if (not mainDot.alreadyOnFloor) and (mainDot.onFloor) then
     mainDot.xV = .6 * mainDot.direction
-    --love.audio.play(sfx)
+    love.audio.play(sfxtouchdown)
   end
   mainDot.alreadyOnFloor = mainDot.onFloor
 end
