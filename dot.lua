@@ -7,7 +7,9 @@ end
 
 function drawDot(dotToDraw, blockToCheck)
   love.graphics.setColor(170, 20, 100)
-  love.graphics.rectangle("fill", dotToDraw.x, dotToDraw.y, dotToDraw.width, dotToDraw.height,.4,.4)
+  love.graphics.rectangle("fill", dotToDraw.x, dotToDraw.y+1/4*dotToDraw.height, dotToDraw.width, dotToDraw.height/2)
+  love.graphics.rectangle("fill", dotToDraw.x+1/4*dotToDraw.width, dotToDraw.y, dotToDraw.width/2, dotToDraw.height)
+  love.graphics.rectangle("fill", dotToDraw.x+dotToDraw.width/8, dotToDraw.y+dotToDraw.height/8, dotToDraw.width*3/4, dotToDraw.height*3/4)
   love.graphics.polygon("fill", getHeartx(dotToDraw)+dotToDraw.direction*3/4*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
   getHeartx(dotToDraw)+dotToDraw.direction*7/8*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
   getHeartx(dotToDraw)+dotToDraw.direction*dotToDraw.width*5/8, getHearty(dotToDraw)+3/8*dotToDraw.height,
