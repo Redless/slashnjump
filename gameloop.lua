@@ -11,7 +11,7 @@ function updateInGame(dt)
   for i = 1,table.getn(currentBlocks) do
     checkCollisions(mainDot,currentBlocks[i])
   end
-  if (not mainDot.alreadyOnFloor) and (mainDot.onFloor) then
+  if (not mainDot.alreadyOnFloor) and (mainDot.onFloor) and (not mainDot.onLeftWall) and (not mainDot.onRightWall) then
     mainDot.xV = .6 * mainDot.direction
     love.audio.play(sfxtouchdown)
   end
