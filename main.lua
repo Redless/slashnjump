@@ -5,8 +5,13 @@ require("gameloop")
 
 function love.load()
   normalFont = love.graphics.newFont(99)
-  mode = "game"
+  mode = "menu"
   currentMenuIn = 1
+  -- 1 is main menu
+  -- 2 is level select
+  -- 3 is OPTIONS
+  -- 4 is CREDITS
+  -- 5 is a holding chamber for the game engine
   loadMenus()
   menuIn = 1
   maxJump = 3
@@ -25,6 +30,8 @@ end
 function love.update(dt)
   if mode == "game" then
     updateInGame()
+  elseif mode == "menu" and currentMenuIn == 5 then
+    mode = "game"
   end
 end
 
@@ -33,6 +40,18 @@ function love.draw(dt)
     drawInGame()
   elseif mode == "menu" then
     drawInMenus()
+  end
+end
+
+function love.mousepressed(x, y, button, isTouch)
+  if (button == 1) and (mode == "menu") then
+    mouseDownCommand = getMouseCommand(x,y,currentMenuIn)
+  end
+end
+
+function love.mousereleased(x, y, button, isTouch)
+  if (button == 1) and (mode == "menu") and mouseDownCommand and (mouseDownCommand == getMouseCommand(x,y,currentMenuIn)) then
+    --executes the mouse command
   end
 end
 
