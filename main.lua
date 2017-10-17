@@ -30,12 +30,13 @@ end
 function love.update(dt)
   if mode == "game" then
     updateInGame()
-  elseif mode == "menu" and currentMenuIn == 5 then
+  elseif mode == "menu" and currentMenuIn == 2 then
     mode = "game"
   end
 end
 
 function love.draw(dt)
+  --love.graphics.print(getMouseCommand(love.mouse.getX(),love.mouse.getY(),currentMenuIn))
   if mode == "game" then
     drawInGame()
   elseif mode == "menu" then
@@ -44,14 +45,14 @@ function love.draw(dt)
 end
 
 function love.mousepressed(x, y, button, isTouch)
-  if (button == 1) and (mode == "menu") then
+  if ((button == 1) and (mode == "menu")) then
     mouseDownCommand = getMouseCommand(x,y,currentMenuIn)
   end
 end
 
 function love.mousereleased(x, y, button, isTouch)
-  if (button == 1) and (mode == "menu") and mouseDownCommand and (mouseDownCommand == getMouseCommand(x,y,currentMenuIn)) then
-    --executes the mouse command
+  if ((button == 1) and (mode == "menu") and mouseDownCommand and (mouseDownCommand == getMouseCommand(x,y,currentMenuIn))) then
+    currentMenuIn = mouseDownCommand
   end
 end
 
