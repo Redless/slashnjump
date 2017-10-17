@@ -1,4 +1,5 @@
 function updateInGame(dt)
+
   mainDot.onLeftWall = false
   mainDot.onRightWall = false
   mainDot.onFloor = false
@@ -19,8 +20,10 @@ function updateInGame(dt)
 end
 
 function drawInGame(dt)
+  updateCamera(mainDot)
   love.graphics.setBackgroundColor(200, 200, 255)
   love.graphics.scale(30, 30)
+  love.graphics.translate(-cameraX, -cameraY)
   drawDot(mainDot,currentBlocks[1])
   for i = 1,table.getn(currentBlocks) do
     drawBlock(currentBlocks[i])
