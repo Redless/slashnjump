@@ -3,6 +3,7 @@ require("dot")
 require("menu")
 require("gameloop")
 require("camera")
+require("levels")
 
 function love.load()
   normalFont = love.graphics.newFont(99)
