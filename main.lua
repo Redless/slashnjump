@@ -6,7 +6,7 @@ require("camera")
 
 function love.load()
   normalFont = love.graphics.newFont(99)
-  mode = "menu"
+  mode = "game"
   currentMenuIn = 1
   -- 1 is main menu
   -- 2 is level select
@@ -14,7 +14,8 @@ function love.load()
   -- 4 is CREDITS
   -- 5 is a holding chamber for the game engine
   loadMenus()
-  loadCamera()
+  mainDot = dot(10,10,1,1)
+  loadCamera(50,100,mainDot)
   menuIn = 1
   maxJump = 3
   maxSpeed = .2
