@@ -25,7 +25,7 @@ function drawInGame(dt)
   updateCamera(mainDot)
   love.graphics.setBackgroundColor(200, 200, 255)
   love.graphics.scale(30, 30)
-  love.graphics.translate(-cameraX, -cameraY)
+  love.graphics.translate(0-cameraX, 0-cameraY)
   drawDot(mainDot)
   for i = 1,table.getn(currentBlocks) do
     drawBlock(currentBlocks[i])

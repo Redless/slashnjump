@@ -63,24 +63,24 @@ function checkCollisions (dotToCheck, blockToCheck)
   and (blockToCheck.y < (dotToCheck.y + dotToCheck.height))
   and ((blockToCheck.x + blockToCheck.width) > dotToCheck.x)
   and (blockToCheck.x < (dotToCheck.x + dotToCheck.width)) then
-    if (dotToCheck.yV <= 0) and (getHearty(dotToCheck)) > (math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+blockToCheck.y-blockToCheck.width/2) and (getHearty(dotToCheck) >= getHearty(blockToCheck)) then--heart is in the upper v
-      --move up in positive y
+    if (getHearty(dotToCheck) >= math.max(getHearty(blockToCheck),math.abs(getHeartx(dotToCheck) - getHeartx(blockToCheck))+blockToCheck.y+blockToCheck.height-blockToCheck.width/2)) then--heart is in the upper v
+      --move in positive y
       dotToCheck.yV = 0
       dotToCheck.y = blockToCheck.y + blockToCheck.height
 
-    elseif ((dotToCheck.yV >= 0) and (getHearty(dotToCheck)) < (-math.abs(getHeartx(dotToCheck)-getHeartx(blockToCheck))+blockToCheck.y+blockToCheck.width/2) and (getHearty(dotToCheck) <= getHearty(blockToCheck))) then
+    elseif (getHearty(dotToCheck) <= math.min(getHearty(blockToCheck),-math.abs(getHeartx(dotToCheck) - getHeartx(blockToCheck))+blockToCheck.y+blockToCheck.width/2)) then
       --move in negative y
       dotToCheck.yV = 0
 
       dotToCheck.y = blockToCheck.y - dotToCheck.height
 
-    elseif (dotToCheck.xV <= 0) and (getHeartx(dotToCheck)) > (math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+blockToCheck.x-blockToCheck.height/2) and (getHeartx(dotToCheck) >= getHeartx(blockToCheck)) then
+    elseif (getHeartx(dotToCheck) >= math.max(getHeartx(blockToCheck),math.abs(getHearty(dotToCheck) - getHearty(blockToCheck))+blockToCheck.x+blockToCheck.width-blockToCheck.height/2)) then
       --move in positive x
 
       dotToCheck.xV = 0
       dotToCheck.x = blockToCheck.x + blockToCheck.width
 
-    elseif (dotToCheck.xV >= 0) and (getHeartx(dotToCheck)) < (-math.abs(getHearty(dotToCheck)-getHearty(blockToCheck))+blockToCheck.x+blockToCheck.height/2) and (getHeartx(dotToCheck) <= getHeartx(blockToCheck)) then
+    elseif (getHeartx(dotToCheck) <= math.min(getHeartx(blockToCheck),-math.abs(getHearty(dotToCheck) - getHearty(blockToCheck))+blockToCheck.x+blockToCheck.height/2)) then
       --move in negative x
 
       dotToCheck.xV = 0
