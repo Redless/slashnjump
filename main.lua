@@ -7,7 +7,7 @@ require("levels")
 
 function love.load()
   normalFont = love.graphics.newFont(99)
-  mode = "game"
+  mode = "menu"
   currentMenuIn = 1
   -- 1 is main menu
   -- 2 is level select
@@ -35,6 +35,7 @@ function love.update(dt)
   if mode == "game" then
     updateInGame()
   elseif mode == "menu" and currentMenuIn == 2 then
+    loadLevel(firstLevel)
     mode = "game"
   end
 end

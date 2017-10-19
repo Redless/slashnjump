@@ -5,7 +5,7 @@ function dot(x, y, width, height)
   direction = 1} -- 1 is forward, 0 is backwards
 end
 
-function drawDot(dotToDraw, blockToCheck)
+function drawDot(dotToDraw)
   love.graphics.setColor(170, 20, 100)
   love.graphics.rectangle("fill", dotToDraw.x, dotToDraw.y+1/4*dotToDraw.height, dotToDraw.width, dotToDraw.height/2)
   love.graphics.rectangle("fill", dotToDraw.x+1/4*dotToDraw.width, dotToDraw.y, dotToDraw.width/2, dotToDraw.height)

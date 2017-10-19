@@ -20,11 +20,13 @@ function updateInGame(dt)
 end
 
 function drawInGame(dt)
+  love.graphics.print(mainDot.x)
+  love.graphics.print(mainDot.y,0,170)
   updateCamera(mainDot)
   love.graphics.setBackgroundColor(200, 200, 255)
   love.graphics.scale(30, 30)
   love.graphics.translate(-cameraX, -cameraY)
-  drawDot(mainDot,currentBlocks[1])
+  drawDot(mainDot)
   for i = 1,table.getn(currentBlocks) do
     drawBlock(currentBlocks[i])
   end
