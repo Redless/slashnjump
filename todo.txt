@@ -1,9 +1,4 @@
 todo:
 
-main menu
--quit button
--play button
--options button
-
-level select
--menu screen
+level select screen
+unfuck the camera
