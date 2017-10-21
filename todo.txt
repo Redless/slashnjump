@@ -1,4 +1,6 @@
 todo:
 
 level select screen
-unfuck the camera
+targets to break
+slimy walls
+ceiling grab

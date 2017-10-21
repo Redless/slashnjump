@@ -2,6 +2,7 @@ function updateInGame(dt)
 
   mainDot.onLeftWall = false
   mainDot.onRightWall = false
+  mainDot.onCeiling = false
   mainDot.onFloor = false
   for i = 1,table.getn(currentBlocks) do
     checkWalls(mainDot,currentBlocks[i])

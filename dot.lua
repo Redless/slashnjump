@@ -1,7 +1,7 @@
 function dot(x, y, width, height)
   return {x = x, y = y, width = width, height = height, xV = 0, yV = 0,
   onFloor = true, onLeftWall = false, onRightWall = false, jumping = false,
-  heightJumped = 0, alreadyOnFloor = true, slashUsed = false,
+  heightJumped = 0, alreadyOnFloor = true, slashUsed = false, onCeiling = false,
   direction = 1} -- 1 is forward, 0 is backwards
 end
 
@@ -37,7 +37,7 @@ end
 
 function applyGravity(dotToUse)
   dotToUse.jumping = (dotToUse.heightJumped < maxJump) and (dotToUse.jumping) and love.keyboard.isDown("space")
-  if not (dotToUse.jumping or dotToUse.onFloor) then
+  if not (dotToUse.jumping or dotToUse.onFloor or (dotToUse.onCeiling and not (dotToUse.onLeftWall or dotToUse.onRightWall))) then
     dotToUse.yV = dotToUse.yV + .02
   elseif dotToUse.jumping then
     dotToUse.heightJumped = dotToUse.heightJumped + .1
@@ -103,6 +103,10 @@ function checkWalls(dotToCheck, blockToCheck)
   end
   if (dotToCheck.y + dotToCheck.height == blockToCheck.y) and (dotToCheck.x + dotToCheck.width > blockToCheck.x) and (dotToCheck.x < blockToCheck.x + blockToCheck.width) then
     dotToCheck.onFloor = true
+    dotToCheck.slashUsed = false
+  end
+  if (dotToCheck.y == blockToCheck.height + blockToCheck.y) and (dotToCheck.x + dotToCheck.width > blockToCheck.x) and (dotToCheck.x < blockToCheck.x + blockToCheck.width) then
+    dotToCheck.onCeiling = true
     dotToCheck.slashUsed = false
   end
 end

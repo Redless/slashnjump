@@ -66,6 +66,8 @@ function love.keypressed(key)
     if (key == "space") and mainDot.onFloor then
       --love.audio.play(sfx)
       jump(mainDot)
+    elseif (key == "space") and mainDot.onCeiling then
+      mainDot.yV = .1
     elseif (key == "space") and mainDot.onLeftWall then
       leftWallKick(mainDot)
     elseif (key == "space") and mainDot.onRightWall then
