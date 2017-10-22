@@ -10,6 +10,9 @@ function updateInGame(dt)
   applyVelocity(mainDot)
   applyGravity(mainDot)
   applyFriction(mainDot)
+  for i = 1,table.getn(currentElectroBlocks) do
+    checkElectroCollisions(mainDot,currentElectroBlocks[i])
+  end
   for i = 1,table.getn(currentBlocks) do
     checkCollisions(mainDot,currentBlocks[i])
   end
@@ -28,5 +31,8 @@ function drawInGame(dt)
   drawDot(mainDot)
   for i = 1,table.getn(currentBlocks) do
     drawBlock(currentBlocks[i])
+  end
+  for i = 1,table.getn(currentElectroBlocks) do
+    drawElectroBlock(currentElectroBlocks[i])
   end
 end

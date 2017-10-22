@@ -4,6 +4,7 @@ require("menu")
 require("gameloop")
 require("camera")
 require("levels")
+require("electroblock")
 
 function love.load()
   normalFont = love.graphics.newFont(99)
@@ -15,15 +16,11 @@ function love.load()
   -- 4 is CREDITS
   -- 5 is a holding chamber for the game engine
   loadMenus()
-  mainDot = dot(10,10,1,1)
   loadCamera(50,100,mainDot)
   menuIn = 1
   maxJump = 3
   maxSpeed = .2
   mainDot = dot(0,0,1,1)
-  currentBlocks = {}
-  table.insert(currentBlocks,block(0,10,100,10))
-  table.insert(currentBlocks,block(10,5,5,500))
   sfxjump = love.audio.newSource("assets/jump.wav")
   sfxdead = love.audio.newSource("assets/dead.wav")
   sfxtouchdown = love.audio.newSource("assets/touchdown.wav")

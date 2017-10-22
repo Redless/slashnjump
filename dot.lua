@@ -146,3 +146,8 @@ function slash(dotToSlash)
     dotToSlash.direction = -dotToSlash.direction
   end
 end
+
+function gameOver(dotToKill)
+  love.audio.play(sfxdead)
+  loadLevel(firstLevel)
+end

@@ -1,6 +1,8 @@
 function loadLevel(level)
   --creates borders
+  mainDot = dot(10,10,1,1)
   currentBlocks = {}
+  currentElectroBlocks = {}
   table.insert(currentBlocks,block(0,-1,level.x,1))
   table.insert(currentBlocks,block(-1,0,1,level.y))
   table.insert(currentBlocks,block(0,level.y,level.x,1))
@@ -8,6 +10,9 @@ function loadLevel(level)
   --loads blocks
   for i = 1,table.getn(level.blocks) do
     table.insert(currentBlocks,block(level.blocks[i][1],level.blocks[i][2],level.blocks[i][3],level.blocks[i][4]))
+  end
+  for i = 1,table.getn(level.electroBlocks) do
+    table.insert(currentElectroBlocks,block(level.electroBlocks[i][1],level.electroBlocks[i][2],level.electroBlocks[i][3],level.electroBlocks[i][4]))
   end
   --loads camera
   loadCamera(level.x,level.y)
@@ -21,5 +26,8 @@ firstLevel = {x = 50, y = 50, startX = 2, startY = 2, blocks = {
 {25,15,50,5},
 {5,0,3,5},
 {25,15,2,55}
+},
+electroBlocks = {
+{6,45,2,2}
 }
 }
