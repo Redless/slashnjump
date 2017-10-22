@@ -1,6 +1,7 @@
 todo:
 
-text in level
-level select screen
+better slash animation
 targets to break
-slimy walls
+better death animation
+timer
+more levels

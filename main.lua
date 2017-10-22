@@ -8,7 +8,7 @@ require("electroblock")
 require("textInLevel")
 
 function love.load()
-  normalFont = love.graphics.newFont(99)
+  normalFont = love.graphics.newFont(80)
   mode = "menu"
   currentMenuIn = 1
   -- 1 is main menu
@@ -32,8 +32,9 @@ end
 function love.update(dt)
   if mode == "game" then
     updateInGame()
-  elseif mode == "menu" and currentMenuIn == 2 then
-    loadLevel(firstLevel)
+  elseif mode == "menu" and currentMenuIn >= 20 then
+    levelOn = everyLevel[currentMenuIn-19]
+    loadLevel(levelOn)
     mode = "game"
   end
 end

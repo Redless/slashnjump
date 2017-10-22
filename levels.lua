@@ -24,8 +24,8 @@ function loadLevel(level)
   mainDot.x = level.startX
   mainDot.y = level.startY
 end
-
-firstLevel = {x = 50, y = 50, startX = 2, startY = 2, blocks = {
+everyLevel = {
+{x = 50, y = 50, startX = 2, startY = 2, blocks = {
 {0,12,20,5},
 {25,15,50,5},
 {5,0,3,5},
@@ -36,5 +36,6 @@ electroBlocks = {
 },
 signs = {
 {"hello!",30,10}
+}
 }
 }

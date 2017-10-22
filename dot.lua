@@ -149,5 +149,5 @@ end
 
 function gameOver(dotToKill)
   love.audio.play(sfxdead)
-  loadLevel(firstLevel)
+  loadLevel(levelOn)
 end
