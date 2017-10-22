@@ -1,7 +1,6 @@
 todo:
 
 text in level
-electrocutors
 level select screen
 targets to break
 slimy walls

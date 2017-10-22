@@ -5,6 +5,7 @@ require("gameloop")
 require("camera")
 require("levels")
 require("electroblock")
+require("textInLevel")
 
 function love.load()
   normalFont = love.graphics.newFont(99)

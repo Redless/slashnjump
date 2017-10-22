@@ -29,6 +29,9 @@ function drawInGame(dt)
   love.graphics.scale(30, 30)
   love.graphics.translate(-cameraX, -cameraY)
   drawDot(mainDot)
+  for i = 1,table.getn(currentSigns) do
+    drawText(currentSigns[i])
+  end
   for i = 1,table.getn(currentBlocks) do
     drawBlock(currentBlocks[i])
   end
