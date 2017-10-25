@@ -28,6 +28,7 @@ function drawInGame(dt)
   love.graphics.setBackgroundColor(200, 200, 255)
   love.graphics.scale(30, 30)
   love.graphics.translate(-cameraX, -cameraY)
+  decrementSlashTime(mainDot)
   drawDot(mainDot)
   for i = 1,table.getn(currentSigns) do
     drawText(currentSigns[i])

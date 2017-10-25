@@ -2,6 +2,7 @@ function dot(x, y, width, height)
   return {x = x, y = y, width = width, height = height, xV = 0, yV = 0,
   onFloor = true, onLeftWall = false, onRightWall = false, jumping = false,
   heightJumped = 0, alreadyOnFloor = true, slashUsed = false, onCeiling = false,
+  slashTime = 1,
   direction = 1} -- 1 is forward, 0 is backwards
 end
 
@@ -14,6 +15,14 @@ function drawDot(dotToDraw)
   getHeartx(dotToDraw)+dotToDraw.direction*7/8*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
   getHeartx(dotToDraw)+dotToDraw.direction*dotToDraw.width*5/8, getHearty(dotToDraw)+3/8*dotToDraw.height,
   getHeartx(dotToDraw)+dotToDraw.direction*dotToDraw.width*4/8, getHearty(dotToDraw)+3/8*dotToDraw.height)
+  if (dotToDraw.slashTime > 0) then
+    love.graphics.setColor(255,255,0)
+    love.graphics.polygon("fill",
+    getHeartx(dotToDraw)-7/8*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
+    getHeartx(dotToDraw)+7/8*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
+    getHeartx(dotToDraw)+dotToDraw.width*5/8, getHearty(dotToDraw)+3/8*dotToDraw.height,
+    getHeartx(dotToDraw)-dotToDraw.width*5/8, getHearty(dotToDraw)+3/8*dotToDraw.height)
+  end
 end
 
 function applyVelocity(dotToUse)
@@ -141,10 +150,15 @@ end
 
 function slash(dotToSlash)
   if not dotToSlash.slashUsed then
+    dotToSlash.slashTime = 10
     love.audio.play(sfxslash)
     dotToSlash.slashUsed = true
     dotToSlash.direction = -dotToSlash.direction
   end
+end
+
+function decrementSlashTime(dotToUse)
+  dotToUse.slashTime = dotToUse.slashTime - 1
 end
 
 function gameOver(dotToKill)
