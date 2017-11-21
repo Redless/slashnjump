@@ -1,5 +1,4 @@
 function updateInGame(dt)
-
   mainDot.onLeftWall = false
   mainDot.onRightWall = false
   mainDot.onCeiling = false

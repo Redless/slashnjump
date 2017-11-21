@@ -1,6 +1,6 @@
 function loadLevel(level)
   --creates borders
-  mainDot = dot(10,10,1,1)
+  mainDot = dot(10,10,7/10,1)--9/10,7/10)
   currentBlocks = {}
   currentElectroBlocks = {}
   currentSigns = {}

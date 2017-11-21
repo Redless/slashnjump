@@ -8,6 +8,7 @@ require("electroblock")
 require("textInLevel")
 
 function love.load()
+  love.graphics.setDefaultFilter("nearest","nearest")
   normalFont = love.graphics.newFont(80)
   mode = "menu"
   currentMenuIn = 1
@@ -27,6 +28,7 @@ function love.load()
   sfxtouchdown = love.audio.newSource("assets/touchdown.wav")
   sfxkick = love.audio.newSource("assets/kick.wav")
   sfxslash = love.audio.newSource("assets/slash.wav")
+  mainSprite = love.graphics.newImage("assets/guy.png")
 end
 
 function love.update(dt)

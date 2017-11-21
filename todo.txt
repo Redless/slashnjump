@@ -1,6 +1,5 @@
 todo:
 
-better slash animation
 targets to break
 better death animation
 timer
