@@ -1,15 +1,17 @@
-function checkTargetCollisions(dotToCheck, targetToCheck, targets, index)
-  if ((targetToCheck.y + targetToCheck.height) > dotToCheck.y) --its overlapping a block
-  and (targetToCheck.y < (dotToCheck.y + dotToCheck.height))
-  and ((targetToCheck.x + targetToCheck.width) > dotToCheck.x)
-  and (targetToCheck.x < (dotToCheck.x + dotToCheck.width)) then
+function checkTargetCollisions(dotToCheck, targets, index)
+  if ((targets[index].y + targets[index].height) > dotToCheck.y) --its overlapping a block
+  and (targets[index].y < (dotToCheck.y + dotToCheck.height))
+  and ((targets[index].x + targets[index].width) > dotToCheck.x)
+  and (targets[index].x < (dotToCheck.x + dotToCheck.width)) then
     table.remove(targets,index)
     if (table.getn(targets) == 0) then
       youWin()
     else
       love.audio.play(sfxshatter)
     end
+    return true
   end
+  return false
 end
 
 function drawTarget(drawableTarget)

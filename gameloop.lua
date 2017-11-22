@@ -17,7 +17,9 @@ function updateInGame(dt)
   end
   if (mainDot.slashTime > 0) then
     for i = 1,table.getn(currentTargets) do
-      checkTargetCollisions(mainDot,currentTargets[i],currentTargets,i)
+      if checkTargetCollisions(mainDot,currentTargets,i) then
+        break
+      end
     end
   end
   if (not mainDot.alreadyOnFloor) and (mainDot.onFloor) and (not mainDot.onLeftWall) and (not mainDot.onRightWall) then

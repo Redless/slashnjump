@@ -30,20 +30,22 @@ function loadLevel(level)
 end
 
 everyLevel = {
-{x = 50, y = 50, startX = 2, startY = 2, blocks = {
-{0,12,20,5},
-{25,15,50,5},
-{5,0,3,5},
-{25,15,2,55}
-},
-electroBlocks = {
-{6,45,2,2}
-},
-signs = {
-{"hello!",30,10}
-},
-targets = {
-{10,40,2,2}
-}
-}
+  {x = 50, y = 50, startX = 2, startY = 2,
+    blocks = {
+      {0,12,20,5},
+      {25,15,50,5},
+      {5,0,3,5},
+      {25,15,2,55}
+    },
+    electroBlocks = {
+      {6,45,2,2}
+    },
+    signs = {
+      {"hello!",30,10}
+    },
+    targets = {
+      {10,40,2,2},
+      {30,10,3,1}
+    }
+  }
 }
