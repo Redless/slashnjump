@@ -47,3 +47,9 @@ function drawInGame(dt)
     drawTarget(currentTargets[i])
   end
 end
+
+function youWin()
+  love.audio.play(sfxwin)
+  mode = "menu"
+  currentMenuIn = 1
+end
