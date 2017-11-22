@@ -29,6 +29,8 @@ function love.load()
   sfxkick = love.audio.newSource("assets/kick.wav")
   sfxslash = love.audio.newSource("assets/slash.wav")
   mainSprite = love.graphics.newImage("assets/guy.png")
+  wallSprite = love.graphics.newImage("assets/wallguy.png")
+  ceilingSprite = love.graphics.newImage("assets/ceilingGuy.png")
 end
 
 function love.update(dt)

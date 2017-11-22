@@ -3,23 +3,22 @@ function dot(x, y, width, height)
   onFloor = true, onLeftWall = false, onRightWall = false, jumping = false,
   heightJumped = 0, alreadyOnFloor = true, slashUsed = false, onCeiling = false,
   slashTime = 1,
-  direction = 1} -- 1 is forward, 0 is backwards
+  direction = 1} -- 1 is right, 0 is left
 end
 
 function drawDot(dotToDraw)
-  --love.graphics.setColor(170, 20, 100)
-  --if (dotToDraw.slashTime > 0) then
-    --love.graphics.setColor(255, 255, 0)
-  --end
+  spriteToDraw = mainSprite
+  if (dotToDraw.onLeftWall or dotToDraw.onRightWall) then
+    spriteToDraw = wallSprite
+  elseif (dotToDraw.onCeiling) then
+    spriteToDraw = ceilingSprite
+  end
   love.graphics.setColor(255, 255, 255)
-  love.graphics.draw(mainSprite, dotToDraw.x, dotToDraw.y, 0,1/9,1/9)-- r, sx, sy, ox, oy, kx, ky)
-  --love.graphics.rectangle("fill", dotToDraw.x, dotToDraw.y+1/4*dotToDraw.height, dotToDraw.width, dotToDraw.height/2)
-  --love.graphics.rectangle("fill", dotToDraw.x+1/4*dotToDraw.width, dotToDraw.y, dotToDraw.width/2, dotToDraw.height)
-  --love.graphics.rectangle("fill", dotToDraw.x+dotToDraw.width/8, dotToDraw.y+dotToDraw.height/8, dotToDraw.width*3/4, dotToDraw.height*3/4)
-  --love.graphics.polygon("fill", getHeartx(dotToDraw)+dotToDraw.direction*3/4*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
-  --getHeartx(dotToDraw)+dotToDraw.direction*7/8*dotToDraw.width, getHearty(dotToDraw)-3/4*dotToDraw.height,
-  --getHeartx(dotToDraw)+dotToDraw.direction*dotToDraw.width*5/8, getHearty(dotToDraw)+3/8*dotToDraw.height,
-  --getHeartx(dotToDraw)+dotToDraw.direction*dotToDraw.width*4/8, getHearty(dotToDraw)+3/8*dotToDraw.height)
+  if (not (dotToDraw.direction == 1)) then
+    love.graphics.draw(spriteToDraw, dotToDraw.x+dotToDraw.width, dotToDraw.y, 0,-1/9,1/9)
+  else
+    love.graphics.draw(spriteToDraw, dotToDraw.x, dotToDraw.y, 0,1/9,1/9)
+  end
   if (dotToDraw.slashTime > 0) then
     love.graphics.setColor(255,255,0)
     love.graphics.polygon("fill",
