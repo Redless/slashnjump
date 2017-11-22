@@ -4,7 +4,7 @@ function checkTargetCollisions(dotToCheck, targetToCheck, targets, index)
   and ((targetToCheck.x + targetToCheck.width) > dotToCheck.x)
   and (targetToCheck.x < (dotToCheck.x + dotToCheck.width)) then
     table.remove(targets,index)
-    if (targets.getn() == 0) then
+    if (table.getn(targets) == 0) then
       youWin()
     else
       love.audio.play(sfxshatter)
