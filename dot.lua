@@ -2,7 +2,7 @@ function dot(x, y, width, height)
   return {x = x, y = y, width = width, height = height, xV = 0, yV = 0,
   onFloor = true, onLeftWall = false, onRightWall = false, jumping = false,
   heightJumped = 0, alreadyOnFloor = true, slashUsed = false, onCeiling = false,
-  slashTime = 1,
+  slashTime = 0,
   direction = 1} -- 1 is right, 0 is left
 end
 

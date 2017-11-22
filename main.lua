@@ -6,6 +6,7 @@ require("camera")
 require("levels")
 require("electroblock")
 require("textInLevel")
+require("target")
 
 function love.load()
   love.graphics.setDefaultFilter("nearest","nearest")

@@ -4,6 +4,7 @@ function loadLevel(level)
   currentBlocks = {}
   currentElectroBlocks = {}
   currentSigns = {}
+  currentTargets = {}
   table.insert(currentBlocks,block(0,-1,level.x,1))
   table.insert(currentBlocks,block(-1,0,1,level.y))
   table.insert(currentBlocks,block(0,level.y,level.x,1))
@@ -18,12 +19,16 @@ function loadLevel(level)
   for i = 1,table.getn(level.signs) do
     table.insert(currentSigns,newText(level.signs[i][1],level.signs[i][2],level.signs[i][3]))
   end
+  for i = 1,table.getn(level.targets) do
+    table.insert(currentTargets,block(level.targets[i][1],level.targets[i][2],level.targets[i][3],level.targets[i][4]))
+  end
   --loads camera
   loadCamera(level.x,level.y)
   --sets maindot position
   mainDot.x = level.startX
   mainDot.y = level.startY
 end
+
 everyLevel = {
 {x = 50, y = 50, startX = 2, startY = 2, blocks = {
 {0,12,20,5},
@@ -36,6 +41,9 @@ electroBlocks = {
 },
 signs = {
 {"hello!",30,10}
+},
+targets = {
+{10,40,2,2}
 }
 }
 }

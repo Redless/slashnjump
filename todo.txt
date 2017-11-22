@@ -1,6 +1,7 @@
 todo:
 
-targets to break
-better death animation
+winning
 timer
 more levels
+better target breaking animations
+better death animation
