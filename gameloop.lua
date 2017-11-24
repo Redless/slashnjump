@@ -1,4 +1,5 @@
 function updateInGame(dt)
+  --timer = timer + dt
   mainDot.onLeftWall = false
   mainDot.onRightWall = false
   mainDot.onCeiling = false
@@ -48,6 +49,9 @@ function drawInGame(dt)
   for i = 1,table.getn(currentTargets) do
     drawTarget(currentTargets[i])
   end
+  --love.graphics.pop()
+  --drawTargetCounter(table.getn(currentTargets))
+  --drawTimer(timer)
 end
 
 function youWin()

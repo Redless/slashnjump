@@ -1,7 +1,11 @@
 todo:
 
-timer
-more levels
+timer/targetcount
 better target breaking animations
 better death animation
 better winning animation
+saving highscores
+options menu
+quit
+credits
+more levels

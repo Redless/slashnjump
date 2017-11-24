@@ -1,6 +1,7 @@
 function loadLevel(level)
+  timer = 0
   --creates borders
-  mainDot = dot(10,10,6/10,1)--9/10,7/10)
+  mainDot = dot(10,10,1,1)--9/10,7/10)
   currentBlocks = {}
   currentElectroBlocks = {}
   currentSigns = {}

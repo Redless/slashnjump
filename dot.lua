@@ -7,17 +7,18 @@ function dot(x, y, width, height)
 end
 
 function drawDot(dotToDraw)
-  spriteToDraw = mainSprite
+  spriteToDraw = dashing
+  if (dotToDraw.xV == 0) then
+    spriteToDraw = standing
+  end
   if (dotToDraw.onLeftWall or dotToDraw.onRightWall) then
-    spriteToDraw = wallSprite
-  elseif (dotToDraw.onCeiling) then
-    spriteToDraw = ceilingSprite
+    spriteToDraw = clinging
   end
   love.graphics.setColor(255, 255, 255)
   if (not (dotToDraw.direction == 1)) then
-    love.graphics.draw(spriteToDraw, dotToDraw.x+dotToDraw.width, dotToDraw.y, 0,-1/9,1/9)
+    love.graphics.draw(spriteToDraw, dotToDraw.x+dotToDraw.width, dotToDraw.y, 0,-1/5,1/5)
   else
-    love.graphics.draw(spriteToDraw, dotToDraw.x, dotToDraw.y, 0,1/9,1/9)
+    love.graphics.draw(spriteToDraw, dotToDraw.x, dotToDraw.y, 0,1/5,1/5)
   end
   if (dotToDraw.slashTime > 0) then
     love.graphics.setColor(255,255,0)
