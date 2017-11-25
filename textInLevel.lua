@@ -4,5 +4,5 @@ end
 
 function drawText(text)
   love.graphics.setColor(170, 20, 100)
-  love.graphics.print(text.text, text.x, text.y, 0, 1/80)
+  love.graphics.print(text.text, text.x, text.y, 0, 1/15)
 end

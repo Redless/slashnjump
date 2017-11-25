@@ -1,5 +1,5 @@
 function updateInGame(dt)
-  --timer = timer + dt
+  timer = timer + 1
   mainDot.onLeftWall = false
   mainDot.onRightWall = false
   mainDot.onCeiling = false
@@ -32,7 +32,6 @@ end
 
 function drawInGame(dt)
   updateCamera(mainDot)
-  love.graphics.setBackgroundColor(200, 200, 255)
   love.graphics.scale(30, 30)
   love.graphics.translate(-cameraX, -cameraY)
   decrementSlashTime(mainDot)
@@ -49,8 +48,9 @@ function drawInGame(dt)
   for i = 1,table.getn(currentTargets) do
     drawTarget(currentTargets[i])
   end
-  --love.graphics.pop()
-  --drawTargetCounter(table.getn(currentTargets))
+  love.graphics.reset()
+  love.graphics.setBackgroundColor(200, 200, 255)
+  drawTargetCounter(table.getn(currentTargets))
   --drawTimer(timer)
 end
 

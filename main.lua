@@ -7,7 +7,7 @@ require("levels")
 require("electroblock")
 require("textInLevel")
 require("target")
---require("HUD")
+require("HUD")
 
 function love.load()
   love.graphics.setDefaultFilter("nearest","nearest")
