@@ -12,6 +12,8 @@ require("HUD")
 function love.load()
   love.graphics.setDefaultFilter("nearest","nearest")
   normalFont = love.graphics.newFont(80)
+  levelSelectFont = love.graphics.newFont(40)
+  timerFont = love.graphics.newFont(77)
   mode = "menu"
   currentMenuIn = 1
   -- 1 is main menu

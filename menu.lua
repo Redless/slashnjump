@@ -24,7 +24,11 @@ function drawMainMenuButton(buttonToDraw,pressed)
   end
   love.graphics.setColor(10, 10, 30)
 
-  love.graphics.setFont(normalFont)
+  if (currentMenuIn == 2) then
+    love.graphics.setFont(levelSelectFont)
+  else
+    love.graphics.setFont(normalFont)
+  end
   love.graphics.printf(buttonToDraw.text, love.graphics.getWidth()*buttonToDraw.x, (buttonToDraw.y)*love.graphics.getHeight(),love.graphics.getWidth()*buttonToDraw.width,"center")
 end
 
