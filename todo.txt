@@ -1,6 +1,6 @@
 todo:
 
-timer/targetcount
+timer
 better target breaking animations
 better death animation
 better winning animation
