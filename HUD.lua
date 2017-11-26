@@ -8,5 +8,5 @@ end
 function drawTimer()
   love.graphics.setFont(timerFont)
   love.graphics.setColor(170, 20, 100)
-  love.graphics.print(math.floor(timer*10)/10, love.graphics.getWidth()-150,5)
+  love.graphics.print(math.floor(timer*100)/100, love.graphics.getWidth()-150,5)
 end

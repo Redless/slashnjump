@@ -5,7 +5,8 @@ better death animation
 better winning animation
 saving highscores
 options menu
-quit
+pause screen
+results screen
 music
 credits
 more levels

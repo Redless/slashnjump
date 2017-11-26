@@ -47,6 +47,8 @@ function love.update(dt)
     levelOn = everyLevel[currentMenuIn-19]
     loadLevel(levelOn)
     mode = "game"
+  elseif mode == "menu" and currentMenuIn == 6 then
+    love.event.quit()
   end
 end
 
