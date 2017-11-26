@@ -14,7 +14,7 @@ function love.load()
   normalFont = love.graphics.newFont("assets/operational amplifier.ttf",80)
   levelSelectFont = love.graphics.newFont("assets/operational amplifier.ttf",40)
   levelFont = love.graphics.newFont("assets/operational amplifier.ttf", 80)
-  timerFont = love.graphics.newFont("assets/operational amplifier.ttf",77)
+  timerFont = love.graphics.newFont("assets/operational amplifier.ttf",80)
   mode = "menu"
   currentMenuIn = 1
   -- 1 is main menu
@@ -42,7 +42,7 @@ end
 
 function love.update(dt)
   if mode == "game" then
-    updateInGame()
+    updateInGame(dt)
   elseif mode == "menu" and currentMenuIn >= 20 then
     levelOn = everyLevel[currentMenuIn-19]
     loadLevel(levelOn)

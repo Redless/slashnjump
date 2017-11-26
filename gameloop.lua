@@ -1,5 +1,5 @@
 function updateInGame(dt)
-  timer = timer + 1
+  timer = timer + dt
   mainDot.onLeftWall = false
   mainDot.onRightWall = false
   mainDot.onCeiling = false
@@ -51,7 +51,7 @@ function drawInGame(dt)
   love.graphics.reset()
   love.graphics.setBackgroundColor(200, 200, 255)
   drawTargetCounter(table.getn(currentTargets))
-  --drawTimer(timer)
+  drawTimer()
 end
 
 function youWin()
